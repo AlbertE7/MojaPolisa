@@ -1,0 +1,29 @@
+# ============================================================
+# Konfiguracja Netlify dla monorepo Turborepo
+# Aplikacja Next.js w apps/web, packages w packages/*
+# ============================================================
+
+[build]
+  # Build odpalany z roota (workspace npm install + turbo build)
+  command = "npm install --include=dev && npm run build:web"
+  # Output z .next w apps/web
+  publish = "apps/web/.next"
+
+[build.environment]
+  NODE_VERSION = "20"
+  NPM_VERSION  = "10"
+  # Wymusza nowy Next.js runtime na Netlify Edge
+  NEXT_USE_NETLIFY_EDGE = "true"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# Globalne nagłówki bezpieczeństwa
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"

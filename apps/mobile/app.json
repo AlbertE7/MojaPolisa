@@ -1,0 +1,60 @@
+{
+  "expo": {
+    "name": "MojaPolisa – Ubezpieczenia Online",
+    "slug": "mojapolisa",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "scheme": "mojapolisa",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#1e3a8a"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "pl.finvita.mojapolisa",
+      "infoPlist": {
+        "NSFaceIDUsageDescription": "Używamy Face ID do bezpiecznego logowania do aplikacji MojaPolisa.",
+        "ITSAppUsesNonExemptEncryption": false
+      },
+      "associatedDomains": ["applinks:finvita.pl"]
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#1e3a8a"
+      },
+      "package": "pl.finvita.mojapolisa",
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "autoVerify": true,
+          "data": [{ "scheme": "https", "host": "finvita.pl", "pathPrefix": "/mojapolisa" }],
+          "category": ["BROWSABLE", "DEFAULT"]
+        }
+      ]
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      "expo-local-authentication",
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/notification-icon.png",
+          "color": "#1e3a8a"
+        }
+      ]
+    ],
+    "extra": {
+      "router": { "origin": false }
+    },
+    "experiments": {
+      "typedRoutes": true
+    },
+    "owner": "finvita"
+  }
+}
